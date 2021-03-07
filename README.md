@@ -70,6 +70,7 @@ root
 
 
 - The dataset contains 3280 rows, each representing an assessment taken by one student.
-- The most popular class in the dataset was "Learning Git".
+- There are a total of 107 unique exams.
+- The most popular class in the dataset was "Learning Git", with 394 recorded assessments.
 - The "Learning Git" exam had 5 questions and an average score of 67.6%.
 - Questions 1 and 2 on the "Learning Git" exam were the easiest, while question 3 was the hardest.
