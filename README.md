@@ -2,6 +2,7 @@
 ---
 
 This project is an ETL pipeline designed for a [dataset](https://goo.gl/ME6hjp) regarding assessments hosted on an ed tech service. After the data is converted into a queryable form, exploratory analysis using Spark SQL demonstrates some typical queries by the businesses that use the service. The project uses:
+  - [GCP AI Platform Notebooks](https://cloud.google.com/ai-platform-notebooks)
   - [Docker](https://www.docker.com/)
   - [Kafka](https://kafka.apache.org/)
   - [Spark](https://spark.apache.org/)
