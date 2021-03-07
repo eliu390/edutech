@@ -1,1 +1,500 @@
-    1  history > eliu390-history.txt
+   13                HOUR FROM end_date
+   14            ) >= 18 THEN "evening"
+   15            WHEN EXTRACT(
+   16                HOUR FROM end_date
+   17            ) <= 5 THEN "night"
+   18            ELSE "other"
+   19        END) AS trip_time,
+   20        COUNT(*) AS num_trips
+   21        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+   22        WHERE subscriber_type = "Subscriber"
+   23        AND EXTRACT(
+   24            DAYOFWEEK FROM end_date
+   25        ) NOT BETWEEN 2 AND 7
+   26        AND SUBSTRING(zip_code, 1, 2) = "94"
+   27        GROUP BY trip_time'
+   28  bq query --use_legacy_sql=false '
+   29        SELECT (CASE
+   30            WHEN EXTRACT(
+   31                HOUR FROM end_date
+   32            ) BETWEEN 6 AND 11 THEN "morning"
+   33            WHEN EXTRACT(
+   34                HOUR FROM end_date
+   35            ) BETWEEN 12 AND 17 THEN "afternoon"
+   36            WHEN EXTRACT(
+   37                HOUR FROM end_date
+   38            ) >= 18 THEN "evening"
+   39            WHEN EXTRACT(
+   40                HOUR FROM end_date
+   41            ) <= 5 THEN "night"
+   42            ELSE "other"
+   43        END) AS trip_time,
+   44        COUNT(*) AS num_trips
+   45        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+   46        WHERE subscriber_type = "Customer"
+   47        AND EXTRACT(
+   48            DAYOFWEEK FROM end_date
+   49        ) BETWEEN 2 AND 6
+   50        AND SUBSTRING(zip_code, 1, 2) = "94"
+   51        GROUP BY trip_time'
+   52  bq query --use_legacy_sql=false '
+   53        SELECT (CASE
+   54            WHEN EXTRACT(
+   55                HOUR FROM end_date
+   56            ) BETWEEN 6 AND 11 THEN "morning"
+   57            WHEN EXTRACT(
+   58                HOUR FROM end_date
+   59            ) BETWEEN 12 AND 17 THEN "afternoon"
+   60            WHEN EXTRACT(
+   61                HOUR FROM end_date
+   62            ) >= 18 THEN "evening"
+   63            WHEN EXTRACT(
+   64                HOUR FROM end_date
+   65            ) <= 5 THEN "night"
+   66            ELSE "other"
+   67        END) AS trip_time,
+   68        COUNT(*) AS num_trips
+   69        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+   70        WHERE subscriber_type = "Customer"
+   71        AND EXTRACT(
+   72            DAYOFWEEK FROM end_date
+   73        ) NOT BETWEEN 2 AND 7
+   74        AND SUBSTRING(zip_code, 1, 2) = "94"
+   75        GROUP BY trip_time'
+   76  bq query --use_legacy_sql=false '
+   77        SELECT
+   78            start_station_name,
+   79            end_station_name,
+   80            COUNT(*) AS num_trips
+   81        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+   82        WHERE subscriber_type = "Subscriber"
+   83        AND EXTRACT(
+   84            DAYOFWEEK FROM end_date
+   85        ) BETWEEN 2 AND 6
+   86        AND SUBSTRING(zip_code, 1, 2) = "94"
+   87        GROUP BY 
+   88            start_station_name,
+   89            end_station_name
+   90        ORDER BY num_trips DESC
+   91        LIMIT 10'
+   92    bq query --use_legacy_sql=false '
+   93        SELECT
+   94            start_station_name,
+   95            end_station_name,
+   96            COUNT(*) AS num_trips
+   97        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+   98        WHERE subscriber_type = "Subscriber"
+   99        AND EXTRACT(
+  100            DAYOFWEEK FROM end_date
+  101        ) NOT BETWEEN 2 AND 6
+  102        AND SUBSTRING(zip_code, 1, 2) = "94"
+  103        GROUP BY 
+  104            start_station_name,
+  105            end_station_name
+  106        ORDER BY num_trips DESC
+  107        LIMIT 10'
+  108  bq query --use_legacy_sql=false '
+  109        SELECT
+  110            start_station_name,
+  111            end_station_name,
+  112            COUNT(*) AS num_trips
+  113        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  114        WHERE subscriber_type = "Customer"
+  115        AND EXTRACT(
+  116            DAYOFWEEK FROM end_date
+  117        ) BETWEEN 2 AND 6
+  118        AND SUBSTRING(zip_code, 1, 2) = "94"
+  119        GROUP BY 
+  120            start_station_name,
+  121            end_station_name
+  122        ORDER BY num_trips DESC
+  123        LIMIT 10'
+  124  bq query --use_legacy_sql=false '
+  125        SELECT
+  126            start_station_name,
+  127            end_station_name,
+  128            COUNT(*) AS num_trips
+  129        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  130        WHERE subscriber_type = "Customer"
+  131        AND EXTRACT(
+  132            DAYOFWEEK FROM end_date
+  133        ) NOT BETWEEN 2 AND 6
+  134        AND SUBSTRING(zip_code, 1, 2) = "94"
+  135        GROUP BY 
+  136            start_station_name,
+  137            end_station_name
+  138        ORDER BY num_trips DESC
+  139        LIMIT 10'
+  140    bq query --use_legacy_sql=false '
+  141        SELECT
+  142            start_station_name,
+  143            end_station_name,
+  144            COUNT(*) AS num_trips
+  145        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  146        WHERE subscriber_type = "Subscriber"
+  147        AND EXTRACT(
+  148            DAYOFWEEK FROM end_date
+  149        ) BETWEEN 2 AND 6
+  150        AND SUBSTRING(zip_code, 1, 2) = "94"
+  151        AND (EXTRACT(
+  152                HOUR FROM end_date
+  153            ) BETWEEN 7 AND 9 
+  154            OR EXTRACT(
+  155                HOUR FROM end_date
+  156            ) BETWEEN 16 AND 18)
+  157        GROUP BY
+  158            start_station_name,
+  159            end_station_name
+  160        ORDER BY num_trips DESC
+  161        LIMIT 10'
+  162    bq query --use_legacy_sql=false '
+  163        SELECT
+  164            start_station_name,
+  165            end_station_name,
+  166            COUNT(*) AS num_trips
+  167        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  168        WHERE subscriber_type = "Subscriber"
+  169        AND EXTRACT(
+  170            DAYOFWEEK FROM end_date
+  171        ) BETWEEN 2 AND 6
+  172        AND SUBSTRING(zip_code, 1, 2) = "94"
+  173        AND EXTRACT(
+  174                HOUR FROM end_date
+  175            ) BETWEEN 7 AND 9 
+  176        GROUP BY
+  177            start_station_name,
+  178            end_station_name
+  179        ORDER BY num_trips DESC
+  180        LIMIT 10'
+  181    bq query --use_legacy_sql=false '
+  182        SELECT
+  183            start_station_name,
+  184            end_station_name,
+  185            COUNT(*) AS num_trips
+  186        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  187        WHERE subscriber_type = "Subscriber"
+  188        AND EXTRACT(
+  189            DAYOFWEEK FROM end_date
+  190        ) BETWEEN 2 AND 6
+  191        AND SUBSTRING(zip_code, 1, 2) = "94"
+  192        AND EXTRACT(
+  193                HOUR FROM end_date
+  194            ) BETWEEN 16 AND 18
+  195        GROUP BY
+  196            start_station_name,
+  197            end_station_name
+  198        ORDER BY num_trips DESC
+  199        LIMIT 10'
+  200   bq query --use_legacy_sql=false '
+  201    SELECT SUM(identical_trips) AS total_identical_trips
+  202    FROM (
+  203        SELECT
+  204            start_station_name,
+  205            end_station_name,
+  206            start_date,
+  207            end_date,
+  208            COUNT(*) AS identical_trips
+  209        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  210        WHERE subscriber_type = "Customer"
+  211        GROUP BY 
+  212            start_station_name,
+  213            end_station_name,
+  214            start_date,
+  215            end_date
+  216    )
+  217    WHERE identical_trips != 1'
+  218  bq query --use_legacy_sql=false '
+  219        SELECT COUNT(*) AS total_trips
+  220        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  221        WHERE subscriber_type = "Customer"'
+  222  bq query --use_legacy_sql=false '
+  223        SELECT SUM(identical_trips) AS total_identical_trips
+  224        FROM (
+  225            SELECT
+  226                start_station_name,
+  227                end_station_name,
+  228                start_date,
+  229                end_date,
+  230                COUNT(*) AS identical_trips
+  231            FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  232            WHERE subscriber_type = "Customer"
+  233            AND SUBSTRING(zip_code, 1, 2) = "94"
+  234            GROUP BY 
+  235                start_station_name,
+  236                end_station_name,
+  237                start_date,
+  238                end_date
+  239            )
+  240        WHERE identical_trips != 1'
+  241   bq query --use_legacy_sql=false '
+  242        SELECT COUNT(*) AS total_trips
+  243        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  244        WHERE subscriber_type = "Customer"
+  245        AND SUBSTRING(zip_code, 1, 2) = "94"'
+  246  bq query --use_legacy_sql=false '
+  247        SELECT
+  248            start_station_name,
+  249            end_station_name,
+  250            SUM(identical_trips) AS total_identical_trips
+  251        FROM (
+  252            SELECT
+  253                start_station_name,
+  254                end_station_name,
+  255                start_date,
+  256                end_date,
+  257                COUNT(*) AS identical_trips
+  258            FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  259            WHERE subscriber_type = "Customer"
+  260            AND SUBSTRING(zip_code, 1, 2) = "94"
+  261            GROUP BY 
+  262                start_station_name,
+  263                end_station_name,
+  264                start_date,
+  265                end_date
+  266            )
+  267        GROUP BY
+  268            start_station_name,
+  269            end_station_name
+  270        ORDER BY total_identical_trips DESC
+  271        LIMIT 20'
+  272  bq query --use_legacy_sql=false '
+  273        SELECT
+  274            start_station_name,
+  275            SUM(identical_trips) AS total_identical_trips
+  276        FROM (
+  277            SELECT
+  278                start_station_name,
+  279                end_station_name,
+  280                start_date,
+  281                end_date,
+  282                COUNT(*) AS identical_trips
+  283            FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  284            WHERE subscriber_type = "Customer"
+  285            AND SUBSTRING(zip_code, 1, 2) = "94"
+  286            GROUP BY 
+  287                start_station_name,
+  288                end_station_name,
+  289                start_date,
+  290                end_date
+  291            )
+  292        GROUP BY start_station_name
+  293        ORDER BY total_identical_trips DESC
+  294        LIMIT 10'
+  295  bq query --use_legacy_sql=false '
+  296        SELECT
+  297            start_station_name,
+  298            COUNT(*) AS total_starts
+  299        FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  300        WHERE SUBSTRING(zip_code, 1, 2) = "94"
+  301        GROUP BY start_station_name
+  302        ORDER BY total_starts DESC
+  303        LIMIT 10'
+  304  bq query --use_legacy_sql=false '
+  305          SELECT
+  306              end_station_name,
+  307              COUNT(*) AS total_ends
+  308          FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+  309          WHERE SUBSTRING(zip_code, 1, 2) = "94"
+  310          GROUP BY end_station_name
+  311          ORDER BY total_ends DESC
+  312          LIMIT 10'
+  313    bq query --use_legacy_sql=false '
+  314        SELECT
+  315            name,
+  316            latitude,
+  317            longitude,
+  318            COUNT(*) AS times_unavailable
+  319        FROM `bigquery-public-data.san_francisco.bikeshare_status` AS Statuses
+  320        JOIN `bigquery-public-data.san_francisco.bikeshare_stations` AS Stations
+  321        ON Statuses.station_id = Stations.station_id
+  322        WHERE bikes_available = 0
+  323        GROUP BY 
+  324            name,
+  325            latitude,
+  326            longitude
+  327        ORDER BY times_unavailable DESC
+  328        LIMIT 10'
+  329  bq query --use_legacy_sql=false '
+  330        SELECT
+  331            name,
+  332            latitude,
+  333            longitude,
+  334            COUNT(*) AS times_unavailable
+  335        FROM `bigquery-public-data.san_francisco.bikeshare_status` AS Statuses
+  336        JOIN `bigquery-public-data.san_francisco.bikeshare_stations` AS Stations
+  337        ON Statuses.station_id = Stations.station_id
+  338        WHERE docks_available = 0
+  339        GROUP BY 
+  340            name,   
+  341            latitude,
+  342            longitude
+  343        ORDER BY times_unavailable DESC
+  344        LIMIT 10'
+  345  clear
+  346  cd w205/project-1-eliu390/
+  347  git status
+  348  git commit -a -m "mostly done"
+  349  git push
+  350  git status
+  351  git status
+  352  git commit -a -m "final report"
+  353  git push
+  354  cd w205/project-1-eliu390/
+  355  git status
+  356  git commit -a -m "finished README"
+  357  git status
+  358  git push
+  359  git status
+  360  git add .
+  361  git commit -a -m "fixed filename typo"
+  362  git push
+  363  git status
+  364  git checkout -- example.ipynb
+  365  cd ~/w205/
+  366  ls
+  367  cd course-content-spring2021/
+  368  git status
+  369  git checkout -- .
+  370  git status
+  371  cd ~/w205/project-1-eliu390/
+  372  ls
+  373  git status
+  374  git commit -a -m "testing hyperlinks"
+  375  git push
+  376    bq query --use_legacy_sql=false '
+  377        SELECT
+  378            name,
+  379            latitude,
+  380            longitude,
+  381            COUNT(*) AS times_unavailable
+  382        FROM `bigquery-public-data.san_francisco.bikeshare_status` AS Statuses
+  383        JOIN `bigquery-public-data.san_francisco.bikeshare_stations` AS Stations
+  384        ON Statuses.station_id = Stations.station_id
+  385        WHERE bikes_available = 0
+  386        GROUP BY 
+  387            name,
+  388            latitude,
+  389            longitude
+  390        ORDER BY times_unavailable DESC
+  391        LIMIT 10'
+  392    bq query --use_legacy_sql=false '
+  393        SELECT
+  394            name,
+  395            latitude,
+  396            longitude,
+  397            COUNT(*) AS times_unavailable
+  398        FROM `bigquery-public-data.san_francisco.bikeshare_status` AS Statuses
+  399        JOIN `bigquery-public-data.san_francisco.bikeshare_stations` AS Stations
+  400        ON Statuses.station_id = Stations.station_id
+  401        WHERE docks_available = 0
+  402        GROUP BY 
+  403            name,   
+  404            latitude,
+  405            longitude
+  406        ORDER BY times_unavailable DESC
+  407        LIMIT 10'
+  408  git status
+  409  git commit -a -m "more hyperlink testing"
+  410  git push
+  411  cd w205/project-1-eliu390/
+  412  git status
+  413  git commit -a -m "add navigation links"
+  414  git push
+  415  ls
+  416  cd ~
+  417  ls
+  418  cd w205/spark-with-kafka/
+  419  cd w205/project-2-eliu390/
+  420  docker-compose up -d
+  421  docker-compose logs -f kafka
+  422  docker-compose ps
+  423  docker-compose exec mids bash -c "/w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+  424  chmod assessments.json 
+  425  ls -l assessments.json 
+  426  chmod assessments.json 777
+  427  chmod 777 assessments.json 
+  428  docker-compose exec mids bash -c "/w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+  429  docker-compose exec kafka kafka-topics --create --topic assessments --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  430  docker-compose exec kafka kafka-topics --describe --topic assessments --zookeeper zookeeper:32181
+  431  docker-compose exec kafka kafka-topics --describe --topic assessments --zookeeper zookeeper:32181
+  432  docker-compose exec mids bash -c "/w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments"
+  433  cat assessments.json | jq '.[]'
+  434  cat assessments.json | jq '.[]' -c
+  435  docker-compose exec mids bash -c "cat /w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments"
+  436  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  437  docker-compose down
+  438  cd w205/spark-with-kafka/
+  439  docker-compose ps
+  440  docker-compose down
+  441  cd ..
+  442  ls
+  443  cd kafka/
+  444  docker-compose ps
+  445  cd ../
+  446  cd w205/
+  447  mkdir flask-with-kafka
+  448  cp course-content-spring2021/09-Ingesting-Data/docker-compose.yml flask-with-kafka/.
+  449  cp course-content-spring2021/09-Ingesting-Data/game_api.py flask-with-kafka/.
+  450  cp course-content-spring2021/09-Ingesting-Data/basic_game_api.py flask-with-kafka/.
+  451  cd course-content-spring2021/09
+  452  cd course-content-spring2021/09-Ingesting-Data/
+  453  ls
+  454  cd ../..
+  455  cd flask-with-kafka/
+  456  ls
+  457  docker-compose up -d
+  458  docker-compose ps
+  459  docker-compose down
+  460  docker-compose up -d
+  461  docker-compose ps
+  462  docker ps
+  463  docker cd ../project-2-eliu390/
+  464  cd ../project-2-eliu390/
+  465  docker-compose ps
+  466  docker-compose down
+  467  docker-compose ps
+  468  docker ps
+  469  docker-compose ps
+  470  docker ps
+  471  docker rm 66f5120d6b34
+  472  docker rm 66f5120d6b34 --force
+  473  docker rm a89643e00b30 --force
+  474  docker rm 8c46274e17d8 --force
+  475  cd w205/project-2-eliu390/
+  476  docker-compose ps
+  477  docker-compose up -d
+  478  docker-compose logs -f kafka
+  479  docker-compose ps
+  480  docker-compose exec kafka kafka-topics --create --topic assessments --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  481  docker-compose exec kafka kafka-topics --describe --topic assessments --zookeeper zookeeper:32181
+  482  docker-compose exec mids bash -c "cat /w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments”
+  483  docker-compose exec mids bash -c "cat /w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments”
+  484  clear
+  485  docker-compose exec mids bash -c "cat /w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments"
+  486  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  487  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  488  docker-compose exec spark pyspark
+  489  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  490  docker-compose ps
+  491  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  492  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  493  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  494  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  495  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  496  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  497  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  498  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  499  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  500  docker ps
+  501  cd w205/project-2-eliu390/
+  502  docker-compose ps
+  503  docker-compose logs -f kafka
+  504  docker-compose ps
+  505  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp
+  506  docker-compose exec kafka kafka-topics --create --topic assessments --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  507  docker-compose exec kafka kafka-topics --describe --topic assessments --zookeeper zookeeper:32181
+  508  docker-compose exec mids bash -c "cat /w205/project-2-eliu390/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments"
+  509  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  510  history > eliu390-history.txt
+  511  rm eliu390-history.txt 
+  512  history > eliu390-history.txt
