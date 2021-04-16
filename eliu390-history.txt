@@ -1,0 +1,94 @@
+  419  cd w205/project-2-eliu390/
+  420  docker-compose up -d
+  421  docker-compose logs -f kafka
+  422  docker-compose ps
+  423  docker-compose exec mids bash -c "/w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+  424  chmod assessments.json 
+  425  ls -l assessments.json 
+  426  chmod assessments.json 777
+  427  chmod 777 assessments.json 
+  428  docker-compose exec mids bash -c "/w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+  429  docker-compose exec kafka kafka-topics --create --topic assessments --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  430  docker-compose exec kafka kafka-topics --describe --topic assessments --zookeeper zookeeper:32181
+  431  docker-compose exec kafka kafka-topics --describe --topic assessments --zookeeper zookeeper:32181
+  432  docker-compose exec mids bash -c "/w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments"
+  433  cat assessments.json | jq '.[]'
+  434  cat assessments.json | jq '.[]' -c
+  435  docker-compose exec mids bash -c "cat /w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments"
+  436  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  437  docker-compose down
+  438  cd w205/spark-with-kafka/
+  439  docker-compose ps
+  440  docker-compose down
+  441  cd ..
+  442  ls
+  443  cd kafka/
+  444  docker-compose ps
+  445  cd ../
+  446  cd w205/
+  447  mkdir flask-with-kafka
+  448  cp course-content-spring2021/09-Ingesting-Data/docker-compose.yml flask-with-kafka/.
+  449  cp course-content-spring2021/09-Ingesting-Data/game_api.py flask-with-kafka/.
+  450  cp course-content-spring2021/09-Ingesting-Data/basic_game_api.py flask-with-kafka/.
+  451  cd course-content-spring2021/09
+  452  cd course-content-spring2021/09-Ingesting-Data/
+  453  ls
+  454  cd ../..
+  455  cd flask-with-kafka/
+  456  ls
+  457  docker-compose up -d
+  458  docker-compose ps
+  459  docker-compose down
+  460  docker-compose up -d
+  461  docker-compose ps
+  462  docker ps
+  463  docker cd ../project-2-eliu390/
+  464  cd ../project-2-eliu390/
+  465  docker-compose ps
+  466  docker-compose down
+  467  docker-compose ps
+  468  docker ps
+  469  docker-compose ps
+  470  docker ps
+  471  docker rm 66f5120d6b34
+  472  docker rm 66f5120d6b34 --force
+  473  docker rm a89643e00b30 --force
+  474  docker rm 8c46274e17d8 --force
+  475  cd w205/project-2-eliu390/
+  476  docker-compose ps
+  477  docker-compose up -d
+  478  docker-compose logs -f kafka
+  479  docker-compose ps
+  480  docker-compose exec kafka kafka-topics --create --topic assessments --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  481  docker-compose exec kafka kafka-topics --describe --topic assessments --zookeeper zookeeper:32181
+  482  docker-compose exec mids bash -c "cat /w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments”
+  483  docker-compose exec mids bash -c "cat /w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments”
+  484  clear
+  485  docker-compose exec mids bash -c "cat /w205/project-2-eliu390/assessments.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments"
+  486  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  487  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  488  docker-compose exec spark pyspark
+  489  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  490  docker-compose ps
+  491  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  492  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  493  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  494  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  495  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  496  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  497  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  498  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  499  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  500  docker ps
+  501  cd w205/project-2-eliu390/
+  502  docker-compose ps
+  503  docker-compose logs -f kafka
+  504  docker-compose ps
+  505  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp
+  506  docker-compose exec kafka kafka-topics --create --topic assessments --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  507  docker-compose exec kafka kafka-topics --describe --topic assessments --zookeeper zookeeper:32181
+  508  docker-compose exec mids bash -c "cat /w205/project-2-eliu390/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t assessments"
+  509  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root --notebook-dir=/w205/' pyspark
+  510  history > eliu390-history.txt
+  511  rm eliu390-history.txt 
+  512  history > eliu390-history.txt
